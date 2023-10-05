@@ -1,13 +1,13 @@
-select 	
-	BORO_NM as borough, 
-	strftime('%H',CMPLNT_FR_TM) as hour, 
-	count(*) as total_crimes
-from 
+SELECT
+	BORO_NM AS borough,
+	strftime('%H', CMPLNT_FR_TM) AS hour,
+	count(*) AS total_crimes
+FROM
 	nypd_crimes
-where 
-	hour is not null
-group by 
-	borough, 
+WHERE
+	hour IS NOT NULL
+GROUP BY
+	borough,
 	hour
-order by 
+ORDER BY
 	hour;
