@@ -1,4 +1,7 @@
 # NYC Crime Analysis Project
+
+## Overview
+
 **Background**
 
 During the pandemic, I heard many people in New York talking about how bad crime in New York had become. Having reading Enlightenment Now, by Steven Pinker, I felt the pessimism I encountered might be more reflective of a general cycnism about societal progress rather than an accurate depiction of the state of crime and what it meant for the future. So, I decided to investigate crime changes for myself: to put context to any pandemic increase and to understand overall trends with greater nuance. 
@@ -45,3 +48,15 @@ Enhanced the analysis dashboard with slicers for flexible crime type viewing.
 Checked violent crime rates using raw database information.
 Ensured alignment with the UCR violent crime definitions.
 Reviewed relevant crime statistics and made adjustments based on UCR guidelines.
+
+
+## Data
+
+### 1. [NYPD Complaint Data Historic](https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i)
+This dataset encompasses valid felony, misdemeanor, and violation crimes reported to the New York City Police Department (NYPD) from 2006 to the end of 2022.
+
+### 2. [Zip Code Boundaries](https://data.cityofnewyork.us/Business/Zip-Code-Boundaries/i8iw-xf4u)
+This dataset contains boundaries for NYC zip codes. Used for geographic referencing, mapping, and spatial analysis.
+
+### 3. Population Data (New York)
+Description
