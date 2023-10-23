@@ -4,14 +4,28 @@
 
 **Background**
 
-During the pandemic, I heard many people in New York talking about how bad crime in New York had become. Having reading Enlightenment Now, by Steven Pinker, I felt the pessimism I encountered might be more reflective of a general cycnism about societal progress rather than an accurate depiction of the state of crime and what it meant for the future. So, I decided to investigate crime changes for myself: to put context to any pandemic increase and to understand overall trends with greater nuance. 
+In early 2023, many New Yorkers talked about how much less safe the city was becoming. I wanted to investigate NYPD historical crime data myself to put context to contextualize recent changes and share more about recent trends and other learnings with greater nuance.
 
-**Database Setup:**
+_Share SQDBPRO file_
 
-* Established an SQLite database with proper data types.
-* Formatted and prepared the database for data ingestion.
-* Used pandas to create a filtered CSV file before conversion to the database.
-* Established database schema and tables.
+## Data
+
+### 1. [NYPD Complaint Data Historic](https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i)
+This dataset encompasses valid felony, misdemeanor, and violation crimes reported to the New York City Police Department (NYPD) from 2006 to the end of 2022.
+
+### 2. [Zip Code Boundaries](https://data.cityofnewyork.us/Business/Zip-Code-Boundaries/i8iw-xf4u)
+This dataset contains boundaries for NYC zip codes. Used for geographic referencing, mapping, and spatial analysis.
+
+### 3. Population Data (New York)
+Description
+
+## Analysis process
+
+**SQLite Database:**
+
+* Created SQLite database **nypd_crimes_db** to store tables relevant for analysis
+* Inserted CSV data from [NYPD Complaint Data Historic](https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i) into **nypd_crimes** table
+* 
 
 **Data Preparation:**
 
@@ -50,13 +64,3 @@ During the pandemic, I heard many people in New York talking about how bad crime
 * Ensured alignment with the UCR violent crime definitions.
 * Reviewed relevant crime statistics and made adjustments based on UCR guidelines.
 
-## Data
-
-### 1. [NYPD Complaint Data Historic](https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i)
-This dataset encompasses valid felony, misdemeanor, and violation crimes reported to the New York City Police Department (NYPD) from 2006 to the end of 2022.
-
-### 2. [Zip Code Boundaries](https://data.cityofnewyork.us/Business/Zip-Code-Boundaries/i8iw-xf4u)
-This dataset contains boundaries for NYC zip codes. Used for geographic referencing, mapping, and spatial analysis.
-
-### 3. Population Data (New York)
-Description
