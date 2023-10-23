@@ -8,24 +8,14 @@ In early 2023, many New Yorkers talked about how much less safe the city was bec
 
 _Share SQDBPRO file_
 
-## Data
-
-### 1. [NYPD Complaint Data Historic](https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i)
-This dataset encompasses valid felony, misdemeanor, and violation crimes reported to the New York City Police Department (NYPD) from 2006 to the end of 2022.
-
-### 2. [Zip Code Boundaries](https://data.cityofnewyork.us/Business/Zip-Code-Boundaries/i8iw-xf4u)
-This dataset contains boundaries for NYC zip codes. Used for geographic referencing, mapping, and spatial analysis.
-
-### 3. Population Data (New York)
-Description
-
-## Analysis process
+## Analysis Approach and Sources
 
 **Created SQLite Database and Tables:**
 
 * Created SQLite database `nypd_crimes_db` to store tables relevant for analysis.
 * `nypd_crimes`
-  * Contains all 8.35M CSV rows from [NYPD Complaint Data Historic](https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i)
+  * Data from [NYPD Complaint Data Historic.](https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i)
+  * Contains 8.35M valid felony, misdemeanor, and violation crimes reported to the New York City Police Department (NYPD) from 2006 to the end of 2022.
 * `crime_types`
   * Re-classifies and groups the specific crime descriptions in the `OFNS_DESC` column into 11 more-easily analyzable `offense_group`s such as `Violent Crimes` and `Property Crimes`.
   * Groupings were carefully refined by referencing the New York State Penal Code and Uniform Crime Reporting System (UCR) classifications.
@@ -34,29 +24,23 @@ Description
   *  
 
 **Geographic Data Transformation and Analysis:**
-* Used Python in QGIS (Open Source Geographic Information System) with 2022 crime data to map crime latitude and longitude coordinates to respective `zipcode` and `borough` with GeoJSON file of NYC zip code boundaries.
+
+* Used GIS software to associate latitude-longitude points with zip codes.
+* Used QGIS software (Open Source Geographic Information System) with 2022 crime data to associate crime latitude-longitude points to with `zipcode` and `borough` using GeoJSON file of [NYC zip code boundaries](https://data.cityofnewyork.us/Business/Zip-Code-Boundaries/i8iw-xf4u).
 * Exported CSV file from QGIS with zip codes appended to each of 800,000 individual crime points to count crimes by zip code in SQLite.
-* Joined New York zip code population data (sourced from using the American Community Survey) with 2022 crimes grouped by `offense_group` and `zipcode`
-* Calculated a crime rate (`crimes_per_100k_zip_code_residents`) for each `zipcode` and `offense_group` for 2022 
+* Joined New York zip code population data (sourced from using the American Community Survey) with 2022 crimes grouped by `offense_group` and `zipcode`.
+* Calculated a crime rate (`crimes_per_100k_zip_code_residents`) for each `zipcode` and `offense_group` grouping in 2022 by dividing the count of crimes by the zipcode population and multiplying by 100k.
 
-**Data Preparation:**
+**Data Cleaning in SQLite:**
 
-* Utilized SQL for data extraction, including filtering and column dropping.
-* Addressed inconsistencies in date columns, particularly with data pre-2006.
-* Grouped data by borough, crime type (description), and year.
-* Conducted table joins using SQL.
-* Connected population data to aggregated complaints using Power BI.
+* Filtered out rows with invalid date data (`CMPLNT_FR_DT`).
+* Filtered out null values for borough, hour of day, etc. when aggregating crimes for visualizations.
 
-**Data Cleaning and Aggregation:**
-
-* Calculated crime rates with zipcode population data to normalize crime levels.
-* Matched crime data with population data by zip code using Python's 'geopy' library in QGIS.
-
-**Visualization and Analysis:**
+**Visualization and Analysis in Power BI:**
 
 * Visualized crime rates by crime type and adjusted groupings for clarity.
 * Presented crimes by day of the week, month, and time of day.
-* Leveraged GIS software to associate latitude-longitude points with zip codes.
+* Used GIS software to associate latitude-longitude points with zip codes.
 * Validated consistency between grouped SQL data and Power BI-transformed data.
 * Segmented crime data analysis by type, following the UCR definitions.
 
