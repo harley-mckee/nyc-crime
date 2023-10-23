@@ -21,11 +21,17 @@ Description
 
 ## Analysis process
 
-**SQLite Database:**
+**Created SQLite Database and Tables:**
 
-* Created SQLite database **nypd_crimes_db** to store tables relevant for analysis
-* Inserted CSV data from [NYPD Complaint Data Historic](https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i) into **nypd_crimes** table
-* 
+* Created SQLite database `nypd_crimes_db` to store tables relevant for analysis.
+* `nypd_crimes`
+  * Contains all 8.35M CSV rows from [NYPD Complaint Data Historic](https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i)
+* `crime_types`
+  * Re-classifies and groups the specific crime descriptions in the `OFNS_DESC` column into 11 more-easily analyzable crime types such as `Violent Crimes` and `Property Crimes`.
+  * Groupings were carefully refined by referencing the New York State Penal Code and Uniform Crime Reporting System (UCR) classifications.
+  * Used research and personal judgment to classify crime types in cases where no universal standard exists.
+* `population_boroughs`
+  *  
 
 **Data Preparation:**
 
@@ -37,9 +43,7 @@ Description
 
 **Data Cleaning and Aggregation:**
 
-* Verified data consistency between SQL, Power BI, and Python.
-* Fixed inconsistencies like 'Staten Island' naming.
-* Calculated crime rates for various crime levels using population data for normalization.
+* Calculated crime rates with zipcode population data to normalize crime levels.
 * Matched crime data with population data by zip code using Python's 'geopy' library.
 * Grouped crime descriptions in a meaningful manner using the Code Interpreter.
 
