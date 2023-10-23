@@ -27,11 +27,17 @@ Description
 * `nypd_crimes`
   * Contains all 8.35M CSV rows from [NYPD Complaint Data Historic](https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i)
 * `crime_types`
-  * Re-classifies and groups the specific crime descriptions in the `OFNS_DESC` column into 11 more-easily analyzable crime types such as `Violent Crimes` and `Property Crimes`.
+  * Re-classifies and groups the specific crime descriptions in the `OFNS_DESC` column into 11 more-easily analyzable `offense_group`s such as `Violent Crimes` and `Property Crimes`.
   * Groupings were carefully refined by referencing the New York State Penal Code and Uniform Crime Reporting System (UCR) classifications.
   * Used research and personal judgment to classify crime types in cases where no universal standard exists.
 * `population_boroughs`
   *  
+
+**Geographic Data Transformation and Analysis:**
+* Used Python in QGIS (Open Source Geographic Information System) with 2022 crime data to map crime latitude and longitude coordinates to respective `zipcode` and `borough` with GeoJSON file of NYC zip code boundaries.
+* Exported CSV file from QGIS with zip codes appended to each of 800,000 individual crime points to count crimes by zip code in SQLite.
+* Joined New York zip code population data (sourced from using the American Community Survey) with 2022 crimes grouped by `offense_group` and `zipcode`
+* Calculated a crime rate (`crimes_per_100k_zip_code_residents`) for each `zipcode` and `offense_group` for 2022 
 
 **Data Preparation:**
 
@@ -44,8 +50,7 @@ Description
 **Data Cleaning and Aggregation:**
 
 * Calculated crime rates with zipcode population data to normalize crime levels.
-* Matched crime data with population data by zip code using Python's 'geopy' library.
-* Grouped crime descriptions in a meaningful manner using the Code Interpreter.
+* Matched crime data with population data by zip code using Python's 'geopy' library in QGIS.
 
 **Visualization and Analysis:**
 
