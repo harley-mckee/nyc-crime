@@ -8,16 +8,16 @@ In early 2023, many New Yorkers talked about how much less safe the city was bec
 
 ## Methodology
 
-**SQLite Database and Tables:**
+**SQLite Tables and Data Sources:**
 
-* Created SQLite database `nypd_crimes_db` to store tables relevant for analysis.
 * `nypd_crimes`
   * Data from [NYPD Complaint Data Historic.](https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i)
   * Contains 8.35M valid felony, misdemeanor, and violation crimes reported to the New York City Police Department (NYPD) from 2006 to the end of 2022.
 * `crime_types`
   * Re-classifies and groups the specific crime descriptions in the `OFNS_DESC` column into 11 more-easily analyzable `offense_group`s such as `Violent Crimes` and `Property Crimes`.
   * Groupings were carefully refined by referencing the New York State Penal Code and Uniform Crime Reporting System (UCR) classifications.
-  * Used research and personal judgment to classify crime types in cases where no universal standard exists.
+  * Ensured alignment with the UCR violent crime definition.
+  * Used research and personal judgment to classify crime types in cases where no UCR standard exists.
 * `population_boroughs`
   *  Contains the `borough_population` for each year from 2000 to 2030 (predicted)
   *  Used linear interpolation with NY Census data to fill in yearly data points between the decennial census years where borough populations were recorded in 2000, 2010, 2020, 2030 (NYC government's population projection)
@@ -42,6 +42,12 @@ In early 2023, many New Yorkers talked about how much less safe the city was bec
 * Filtered out rows with invalid date data (`CMPLNT_FR_DT`).
 * Filtered out null values for borough, hour of day, etc. when aggregating crimes for visualizations.
 
+**Results/Findings**
+
+* See article one
+* two
+* three
+
 **Visualization and Analysis in Power BI:**
 
 * Published the Power BI dashboard to web found [here](www.google.com).
@@ -51,10 +57,10 @@ In early 2023, many New Yorkers talked about how much less safe the city was bec
 * Validated consistency between grouped SQL data and Power BI-transformed data.
 * Segmented crime data analysis by type, following the UCR definitions.
 
+**Challenges and Reflections**
 
-**Quality Checks and Review:**
+* Normalizing crime rates by population and foot traffic
+* Use different geographic boundaries
 
-* Checked violent crime rates using raw database information.
-* Ensured alignment with the UCR violent crime definitions.
-* Reviewed relevant crime statistics and made adjustments based on UCR guidelines.
-
+Discuss any challenges faced during the project.
+Reflect on what was learned and what could be approached differently.
