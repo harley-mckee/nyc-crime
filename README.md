@@ -42,13 +42,13 @@ In early 2023, many New Yorkers talked about how much less safe the city was bec
 * Filtered out rows with invalid date data (`CMPLNT_FR_DT`).
 * Filtered out null values for borough, hour of day, etc. when aggregating crimes for visualizations.
 
-**Results/Findings**
+**Findings**
 
 * See article one
 * two
 * three
 
-**Visualization and Analysis in Power BI:**
+**Visualization and Analysis with SQL and Power BI:**
 
 * Published the Power BI dashboard to web found [here](www.google.com).
 * Visualized crime rates by crime type and adjusted groupings for clarity.
