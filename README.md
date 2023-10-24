@@ -21,9 +21,12 @@ In early 2023, many New Yorkers talked about how much less safe the city was bec
 * `population_boroughs`
   *  Contains the `borough_population` for each year from 2000 to 2030 (predicted)
   *  Used linear interpolation with NY Census data to fill in yearly data points between the decennial census years where borough populations were recorded in 2000, 2010, 2020, 2030 (NYC government's population projection)
-*  `zipcode_population`
-	* Populations for each zip code in New York state in 2022 
+*  `population_zipcode_2022`
+  * Populations for each zip code in New York state in 2022 
 	* Data sourced from [American Community Survey](https://github.com/harley-mckee/nyc-crime/assets/73152094/9a8fb590-62d6-40b7-b457-f262d633e926)
+ * `location_crimes_2022`
+ 	* Table created from crime data for 2022 after matching individual crime latitude-longitude points to zip code using QGIS (see below)
+  * Used to summarize crime rates by zip code and crime type in 2022
 
 
 **Geographic Data Transformation and Analysis:**
@@ -47,7 +50,6 @@ In early 2023, many New Yorkers talked about how much less safe the city was bec
 * Used GIS software to associate latitude-longitude points with zip codes.
 * Validated consistency between grouped SQL data and Power BI-transformed data.
 * Segmented crime data analysis by type, following the UCR definitions.
-
 
 
 **Quality Checks and Review:**
